@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    android:id="@+id/freeVersionBanner"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:osmand="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/osmo_header_dark"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/list_header_padding"
+    android:paddingLeft="@dimen/list_content_padding"
+    android:paddingRight="@dimen/list_content_padding"
+    android:paddingTop="@dimen/list_header_padding"
+    android:theme="@style/FreeVersionBanner"
+    tools:showIn="@layout/local_index_fragment_header">
+
+    <LinearLayout
+        android:id="@+id/freeVersionBannerTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="4dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/free_version_title"/>
+
+        <TextView
+            android:id="@+id/downloadsLeftTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="@string/downloads_left_template"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/freeVersionDescriptionTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        tools:text="@string/free_version_message"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:layout_margin="4dp">
+
+        <ProgressBar
+            android:id="@+id/downloadsLeftProgressBar"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:max="10"
+            android:progressDrawable="@drawable/number_of_downloads_progress_bar_drawable"
+            android:saveEnabled="false"
+            tools:progress="6"/>
+
+        <LinearLayout
+            android:id="@+id/marksLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"/>
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/buttonsLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/list_content_padding">
+
+        <net.osmand.plus.widgets.ButtonEx
+            android:id="@+id/getFullVersionButton"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/list_header_height"
+            android:layout_weight="1"
+            android:background="@drawable/blue_button_drawable"
+            android:text="@string/get_full_version"
+            android:textSize="@dimen/default_desc_text_size"
+            android:textStyle="bold"
+            osmand:textAllCapsCompat="true"/>
+
+        <net.osmand.plus.widgets.ButtonEx
+            android:id="@+id/laterButton"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/list_header_height"
+            android:layout_marginLeft="@dimen/list_content_padding"
+            android:layout_weight="1"
+            android:background="@drawable/later_button_drawable"
+            android:text="@string/later"
+            android:textSize="@dimen/default_desc_text_size"
+            android:textStyle="bold"
+            osmand:textAllCapsCompat="true"/>
+
+    </LinearLayout>
+</LinearLayout>
+
+    

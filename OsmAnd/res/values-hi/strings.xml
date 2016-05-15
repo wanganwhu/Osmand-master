@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><resources>
+  <!--
+    	 Disclaimer : 
+         If you are going to translate strings, please make sure : 
+         1. There is no duplicate strings by name
+         2. Every apostrophe (quote) is preceded by a backslash (see others).
+         If you are making/correcting english translations make sure :
+         1. All your modified/created strings are in the top of the file (to make easier find what\'s translated).
+    -->
+<string name="shared_string_no">नही</string>
+	<string name="shared_string_yes">हा</string>
+	<string name="prefer_motorways">बडी सड़को को प्राधान्य दो</string>
+	<string name="prefer_in_routing_title">प्राधान्य…</string>
+	</resources>

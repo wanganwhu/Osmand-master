@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources><string name="address_search_desc">Mencari alamat</string>
+  <string name="navpoint_search_desc">Koordinat</string>
+  <string name="transport_search_desc">Mencari transportasi</string>
+  <string name="favourites_search_desc">Mencari favorit</string>
+  
+  <string name="rendering_attr_noPolygons_name">Tidak ada poligon</string>
+  <string name="rendering_attr_appMode_name">Modus render</string>
+  <string name="rendering_attr_appMode_description">Peta dioptimisasi untuk Profile yang diharapkan</string>
+  <string name="rendering_attr_contourLines_description">Tampilan dari tingkatan pembesaran (membutuhkan data kontur):</string>
+  <string name="rendering_attr_contourLines_name">Tampilkan garis jejak</string>
+  <string name="rendering_attr_hmRendered_description">Naikkan jumlah detail peta yang ditampilkan</string>
+  <string name="rendering_attr_hmRendered_name">Tampilkan peta lebih lengkap</string>
+  <string name="route_kl">Tetap dikiri dan jalan</string>
+  
+  <string name="asap">ASAP</string>
+<string name="street_name">Jalan</string>
+	<string name="hno">Nomor rumah</string>
+    <string name="website">Website</string>
+	<string name="phone">Telp</string>
+    
+    <string name="monitoring_settings">Layanan pencatatan &amp; Mode Sleep</string>
+    <string name="monitoring_settings_descr">Atur bagaimana ingin mencatat perjalanan dan mengaktifkan mode sleep</string>
+    
+    
+    <string name="osmand_background_plugin_description">Menampilkan pengaturan untuk mengaktifkan tracking dan navigasi pada mode sleep (layar mati) dengan secara periodik mengaktifkan GPS.</string>
+    <string name="contribution_activity">Instal versi</string>
+    <string name="choose_osmand_theme_descr">Pilih tema aplikasi</string>
+    <string name="choose_osmand_theme">Tema App</string>
+    <string name="accessibility_options">Opsi aksesibilitas</string>
+    <string name="select_address_activity">Pilih alamat</string>
+    <string name="favourites_list_activity">Pilih favorit</string>
+    <string name="local_openstreetmap_act_title">Modifikasi OSM</string>
+    <string name="shared_string_more_actions">Perintah lain</string>
+    
+	
+    <string name="map_widget_gps_info">Info GPS</string>
+    
+    <string name="access_arrival_time">Waktu tiba</string>
+    <string name="shared_string_map">Peta</string>
+    <string name="prefer_motorways">Utamakan jalan raya</string>
+	<string name="prefer_in_routing_title">Utamakan…</string>
+	<string name="prefer_in_routing_descr">Utamakan jalan raya</string>
+    <string name="max_speed_none">tidak ada</string>
+    <string name="download_hillshade_maps">Overlay Hillshade</string>
+    
+    <string name="local_indexes_cat_av">Data Audio/Video</string>
+    <string name="about_version">Versi :</string>
+    <string name="shared_string_about">Tentang</string>
+    <string name="about_settings_descr">Info versi, lisensi, anggota</string>
+    
+    <string name="local_index_tile_data_downloadable">Dapat di download: %1$s</string>
+    <string name="shared_string_no">No</string>
+	<string name="shared_string_yes">Yes</string>
+	<string name="donations">Donasi</string>
+    <string name="number_of_recipients">Jumlah penerima</string>
+    <string name="osm_user_stat">Sunting %1$s, peringkat %2$s, total suntingan %3$s</string>
+    <string name="osm_editors_ranking">Peringkat OSM Editors</string>
+    <string name="osm_live_subscription">Berlangganan OSM Live</string>
+    <string name="osm_live_subscribe_btn">Berlangganan</string>
+    <string name="osm_live_email_desc">Kami membutuhkan hal itu untuk menyediakan kepada anda informasi tentang kontribusi</string>
+    <string name="osm_live_user_public_name">Nama Publik</string>
+    <string name="osm_live_hide_user_name">Jangan tampilkan nama saya dilaporan</string>
+    <string name="osm_live_support_region">Regional yang didukung</string>
+    <string name="osm_live_month_cost">Biaya bulanan</string>
+    <string name="osm_live_month_cost_desc">Pembayaran bulanan</string>
+    <string name="osm_live_active">Aktif</string>
+    <string name="osm_live_not_active">Tidak Aktif</string>
+    <string name="osm_live_enter_email">Harap masukkan alamat surel yang benar</string>
+    <string name="osm_live_enter_user_name">Harap masukkan Nama Publik</string>
+    <string name="osm_live_thanks">Terima kasih untuk berlangganan pembaruan langsung!</string>
+    <string name="osm_live_region_desc">Sebagian donasi anda akan dikirim ke pengguna OSM yang memasukkan perubahan ke map diregion tersebut</string>
+    <string name="osm_live_subscription_settings">Pengaturan berlangganan</string>
+    <string name="osm_live_ask_for_purchase">Harap beli berlangganan OSM Live terlebih dahulu</string>
+
+    </resources>
