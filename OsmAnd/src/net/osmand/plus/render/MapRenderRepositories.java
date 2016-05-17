@@ -80,6 +80,10 @@ public class MapRenderRepositories {
 	private Map<String, BinaryMapIndexReader> files = new LinkedHashMap<String, BinaryMapIndexReader>();
 	private Set<String> nativeFiles = new HashSet<String>();
 	private OsmandRenderer renderer;
+
+	/////////////////////////////////////////////////////////////
+	//创建一个临时的渲染上下文传递给RouteConditionLayer
+	public  OsmandRenderer.RenderingContext tempRenderingContext;
 	
 
 
@@ -889,8 +893,11 @@ public class MapRenderRepositories {
 			} else {
 				//////////////////////////////////////////////////
 				//画图
+				tempRenderingContext = currentRenderingContext;
 				renderer.generateNewBitmap(currentRenderingContext, cObjects, bmp, renderingReq, mapTileDownloader);
 			}
+			//////////////////////////////////////////////////
+
 			// Force to use rendering request in order to prevent Garbage Collector when it is used in C++
 			if(renderingReq != null){
 				log.info("Debug :" + renderingReq != null);				
@@ -1354,7 +1361,15 @@ public class MapRenderRepositories {
 		combineRoad = new BinaryMapDataObject(coordinates,types,new int[0][],id);
 		return combineRoad;
 	}
-	
+
+	public OsmandRenderer.RenderingContext getTempRenderContext(){
+		if(tempRenderingContext == null)
+		{
+			log.debug("renderingContext为空！！！");
+		}
+
+		return tempRenderingContext;
+	}
 
 
 }

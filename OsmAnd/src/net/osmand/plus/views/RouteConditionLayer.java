@@ -5,10 +5,12 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PointF;
 
 import net.osmand.PlatformUtil;
 import net.osmand.binary.BinaryMapDataObject;
 import net.osmand.data.RotatedTileBox;
+import net.osmand.plus.render.OsmandRenderer;
 
 import org.apache.commons.logging.Log;
 
@@ -26,10 +28,12 @@ public class RouteConditionLayer extends OsmandMapLayer{
     private final static Log log = PlatformUtil.getLog(RouteConditionLayer.class);
 
     OsmandMapTileView view;
+    private OsmandRenderer osmandRenderer;
+    private OsmandRenderer.RenderingContext tempRenderingContext;
+
     public Map<String,BinaryMapDataObject> roadConditionObject = new LinkedHashMap<>();
     private Paint paint;
 
-    private Path path = new Path();
     private void initUI() {
         paint = new Paint();
 
@@ -43,7 +47,10 @@ public class RouteConditionLayer extends OsmandMapLayer{
     @Override
     public void initLayer(OsmandMapTileView view) {
         this.view = view;
+        osmandRenderer = view.getApplication().getResourceManager().getRenderer().getRenderer();
         roadConditionObject = view.getApplication().getResourceManager().getRenderer().roadConditionObject;
+
+        tempRenderingContext = view.getApplication().getResourceManager().getRenderer().getTempRenderContext();
         initUI();
     }
 
@@ -51,7 +58,6 @@ public class RouteConditionLayer extends OsmandMapLayer{
 
     @Override
     public void onPrepareBufferImage(Canvas canvas, RotatedTileBox tileBox, DrawSettings settings) {
-        path.reset();
         Set keySet = roadConditionObject.keySet();
         Iterator it = keySet.iterator();
         /*while(it.hasNext()){
@@ -67,14 +73,20 @@ public class RouteConditionLayer extends OsmandMapLayer{
             canvas.drawPath(path,paint);
             path.reset();
         }*/
+        Path path = null;
         while(it.hasNext()){
             String roadName = it.next().toString();
             if(roadName.equals("八一路")){
-                log.debug("道路是什么名字呀  "+roadName);
+                log.debug("道路是什么名字呀  " + roadName);
                 BinaryMapDataObject road = roadConditionObject.get(roadName);
-                path.moveTo(road.getPoint31XTile(0),road.getPoint31YTile(0));
-                for(int i = 1; i<road.getPointsLength(); i++){
-                    path.lineTo(road.getPoint31XTile(i),road.getPoint31YTile(i));
+                for(int i = 0; i<road.getPointsLength(); i++){
+                    PointF p = osmandRenderer.calcPoint(road, i, tempRenderingContext);
+                    if(path == null){
+                        path = new Path();
+                        path.moveTo(p.x,p.y);
+                    }else{
+                        path.lineTo(p.x, p.y);
+                    }
                 }
                 canvas.drawPath(path,paint);
                 break;

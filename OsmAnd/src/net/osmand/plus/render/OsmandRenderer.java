@@ -575,7 +575,7 @@ public class OsmandRenderer {
 		}
 	}
 
-	private PointF calcPoint(int xt, int yt, RenderingContext rc){
+	public PointF calcPoint(int xt, int yt, RenderingContext rc){
 		rc.pointCount ++;
 		double tx = xt / rc.tileDivisor;
 		double ty = yt / rc.tileDivisor;
@@ -591,7 +591,7 @@ public class OsmandRenderer {
 		return rc.tempPoint;
 	}
 	
-	private PointF calcPoint(BinaryMapDataObject o, int ind, RenderingContext rc){
+	public PointF calcPoint(BinaryMapDataObject o, int ind, RenderingContext rc){
 		return calcPoint(o.getPoint31XTile(ind), o.getPoint31YTile(ind), rc);
 	}
 
