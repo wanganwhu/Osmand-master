@@ -511,7 +511,7 @@ public class MapRenderRepositories {
 			for (BinaryMapIndexReader c : files.values()) {
 				// false positive case when we have 2 sep maps Country-roads & Country
 				/////////////////////////////////////////////////////////////////////
-				readRouteDataToDrawRouteCondition(searchRequest, c, roadObject, ids);
+				//readRouteDataToDrawRouteCondition(searchRequest, c, roadObject, ids);
 				if(c.getMapIndexes().size() == 0 || renderRouteDataFile == 1) {
 					readRouteDataAsMapObjects(searchRequest, c, tempResult, ids);
 				}

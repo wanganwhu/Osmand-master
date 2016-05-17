@@ -51,6 +51,7 @@ public class RouteConditionLayer extends OsmandMapLayer{
         roadConditionObject = view.getApplication().getResourceManager().getRenderer().roadConditionObject;
 
         tempRenderingContext = view.getApplication().getResourceManager().getRenderer().getTempRenderContext();
+
         initUI();
     }
 
@@ -73,13 +74,16 @@ public class RouteConditionLayer extends OsmandMapLayer{
             canvas.drawPath(path,paint);
             path.reset();
         }*/
-        Path path = null;
+        /*Path path = null;
         while(it.hasNext()){
             String roadName = it.next().toString();
             if(roadName.equals("八一路")){
                 log.debug("道路是什么名字呀  " + roadName);
                 BinaryMapDataObject road = roadConditionObject.get(roadName);
                 for(int i = 0; i<road.getPointsLength(); i++){
+                    if(tempRenderingContext == null){
+                        log.debug("要死啦要死啦tempRenderingContext还是为空啊");
+                    }
                     PointF p = osmandRenderer.calcPoint(road, i, tempRenderingContext);
                     if(path == null){
                         path = new Path();
@@ -91,7 +95,7 @@ public class RouteConditionLayer extends OsmandMapLayer{
                 canvas.drawPath(path,paint);
                 break;
             }
-        }
+        }*/
     }
 
     public void DrawRoad(){
