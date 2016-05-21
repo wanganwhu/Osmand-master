@@ -14,6 +14,7 @@ import net.osmand.plus.render.OsmandRenderer;
 
 import org.apache.commons.logging.Log;
 
+import java.sql.Time;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -29,7 +30,7 @@ public class RouteConditionLayer extends OsmandMapLayer{
 
     OsmandMapTileView view;
     private OsmandRenderer osmandRenderer;
-    private OsmandRenderer.RenderingContext tempRenderingContext;
+    private OsmandRenderer.RenderingContext currentRenderingContext;
 
     public Map<String,BinaryMapDataObject> roadConditionObject = new LinkedHashMap<>();
     private Paint paint;
@@ -49,8 +50,11 @@ public class RouteConditionLayer extends OsmandMapLayer{
         this.view = view;
         osmandRenderer = view.getApplication().getResourceManager().getRenderer().getRenderer();
         roadConditionObject = view.getApplication().getResourceManager().getRenderer().roadConditionObject;
-
-        tempRenderingContext = view.getApplication().getResourceManager().getRenderer().getTempRenderContext();
+        log.debug("到达RouteConditionLayer的initLayer！");
+        currentRenderingContext = view.getApplication().getResourceManager().getRenderer().getTempRenderContext();
+        if(currentRenderingContext == null){
+            log.debug("在RouteConditionLayer还是为空的");
+        }
 
         initUI();
     }
@@ -74,17 +78,18 @@ public class RouteConditionLayer extends OsmandMapLayer{
             canvas.drawPath(path,paint);
             path.reset();
         }*/
-        /*Path path = null;
+        Path path = null;
         while(it.hasNext()){
             String roadName = it.next().toString();
             if(roadName.equals("八一路")){
                 log.debug("道路是什么名字呀  " + roadName);
                 BinaryMapDataObject road = roadConditionObject.get(roadName);
                 for(int i = 0; i<road.getPointsLength(); i++){
-                    if(tempRenderingContext == null){
+                    while(currentRenderingContext == null){
                         log.debug("要死啦要死啦tempRenderingContext还是为空啊");
+                        currentRenderingContext = view.getApplication().getResourceManager().getRenderer().getTempRenderContext();
                     }
-                    PointF p = osmandRenderer.calcPoint(road, i, tempRenderingContext);
+                    PointF p = osmandRenderer.calcPoint(road, i, currentRenderingContext);
                     if(path == null){
                         path = new Path();
                         path.moveTo(p.x,p.y);
@@ -95,7 +100,7 @@ public class RouteConditionLayer extends OsmandMapLayer{
                 canvas.drawPath(path,paint);
                 break;
             }
-        }*/
+        }
     }
 
     public void DrawRoad(){

@@ -130,8 +130,8 @@ public class MapActivityLayers {
 		mapView.addLayer(routeLayer, 1);
 
 		// 2. route condition layer
-		/*routeConditionLayer = new RouteConditionLayer();
-		mapView.addLayer(routeConditionLayer,2);*/
+		routeConditionLayer = new RouteConditionLayer();
+		mapView.addLayer(routeConditionLayer,2);
 
 
 

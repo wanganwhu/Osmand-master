@@ -82,9 +82,6 @@ public class MapRenderRepositories {
 	private OsmandRenderer renderer;
 
 	/////////////////////////////////////////////////////////////
-	//创建一个临时的渲染上下文传递给RouteConditionLayer
-	public  OsmandRenderer.RenderingContext tempRenderingContext;
-	
 
 
 	// lat/lon box of requested vector data
@@ -110,6 +107,7 @@ public class MapRenderRepositories {
 	//roadObject用来存储道路数据
 	public  ArrayList<BinaryMapDataObject> roadObject = null;
 	public Map<String,BinaryMapDataObject> roadConditionObject = new LinkedHashMap<String, BinaryMapDataObject>();
+	public RenderingContext tempRenderingContext;
 	////////////////////////////////////////////////////
 
 	// location of rendered bitmap
@@ -511,7 +509,7 @@ public class MapRenderRepositories {
 			for (BinaryMapIndexReader c : files.values()) {
 				// false positive case when we have 2 sep maps Country-roads & Country
 				/////////////////////////////////////////////////////////////////////
-				//readRouteDataToDrawRouteCondition(searchRequest, c, roadObject, ids);
+				readRouteDataToDrawRouteCondition(searchRequest, c, roadObject, ids);
 				if(c.getMapIndexes().size() == 0 || renderRouteDataFile == 1) {
 					readRouteDataAsMapObjects(searchRequest, c, tempResult, ids);
 				}
@@ -893,8 +891,13 @@ public class MapRenderRepositories {
 			} else {
 				//////////////////////////////////////////////////
 				//画图
-				tempRenderingContext = currentRenderingContext;
 				renderer.generateNewBitmap(currentRenderingContext, cObjects, bmp, renderingReq, mapTileDownloader);
+			}
+			log.debug("MapRenderRepositories运行到currentRenderingContext设置完成的地方啦");
+			tempRenderingContext = new OsmandRenderer.RenderingContext(context);
+			tempRenderingContext = currentRenderingContext;
+			if(tempRenderingContext == null){
+				log.debug("tempRenderingContext为空啊！");
 			}
 			//////////////////////////////////////////////////
 
@@ -1365,7 +1368,7 @@ public class MapRenderRepositories {
 	public OsmandRenderer.RenderingContext getTempRenderContext(){
 		if(tempRenderingContext == null)
 		{
-			log.debug("renderingContext为空！！！");
+			log.debug("currentRenderingContext为空！！！");
 		}
 
 		return tempRenderingContext;

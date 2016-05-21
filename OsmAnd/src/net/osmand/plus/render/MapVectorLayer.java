@@ -22,6 +22,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PointF;
 import android.graphics.RectF;
+import android.util.Log;
 
 public class MapVectorLayer extends BaseMapLayer {
 
@@ -172,6 +173,7 @@ public class MapVectorLayer extends BaseMapLayer {
 	private boolean drawRenderedMap(Canvas canvas, Bitmap bmp, RotatedTileBox bmpLoc, RotatedTileBox currentViewport) {
 		boolean shown = false;
 		if (bmp != null && bmpLoc != null) {
+			//Log.d("MapVectorLayer", "drawRenderedMap: bmp != null");
 			float rot = -bmpLoc.getRotate();
 			canvas.rotate(rot, currentViewport.getCenterPixelX(), currentViewport.getCenterPixelY());
 			final RotatedTileBox calc = currentViewport.copy();
@@ -191,6 +193,7 @@ public class MapVectorLayer extends BaseMapLayer {
 //			final float y2 = calc.getPixYFromLatLon(rb.getLatitude(), rb.getLongitude());
 			destImage.set(x1, y1, x2, y2);
 			if (!bmp.isRecycled()) {
+				//Log.d("MapVectorLayer", "drawRenderedMap: !bmp.isRecycled()");
 				canvas.drawBitmap(bmp, null, destImage, paintImg);
 				shown = true;
 			}
