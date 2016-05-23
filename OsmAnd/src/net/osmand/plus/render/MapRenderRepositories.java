@@ -513,14 +513,15 @@ public class MapRenderRepositories {
 				}
 			}
 			log.info(String.format("RoadObject objects %s", roadObject.size() +""));
+			//GG，发现roadConditionObject的顺序全是随机的，问题很大！
 			BinaryMapDataObject tem = null;
 			for(int i = 0; i<roadObject.size();i++)
 			{
 				if(roadObject.get(i).getName(2) != null && roadObject.get(i).getName(2).trim().length() !=0){
 					if(roadConditionObject.containsKey(roadObject.get(i).getName(2))){
-						tem = roadConditionObject.get(roadObject.get(i).getName(2));
+						/*tem = roadConditionObject.get(roadObject.get(i).getName(2));
 						//roadConditionObject.remove(roadObject.get(i).getName(2));
-						roadConditionObject.put(roadObject.get(i).getName(2),combine2Roads(tem,roadObject.get(i)));
+						roadConditionObject.put(roadObject.get(i).getName(2),combine2Roads(tem,roadObject.get(i)));*/
 					}
 					else {
 						roadConditionObject.put(roadObject.get(i).getName(2),roadObject.get(i));

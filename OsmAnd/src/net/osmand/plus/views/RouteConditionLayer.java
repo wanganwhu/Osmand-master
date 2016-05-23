@@ -58,11 +58,11 @@ public class RouteConditionLayer extends OsmandMapLayer{
 
     private void initUI() {
         paint = new Paint();
-
         paint.setAntiAlias(true);
         paint.setStyle(Paint.Style.STROKE);
         paint.setColor(Color.GREEN);
         paint.setStrokeWidth(3);
+        log.debug("inintUI会调用几次呢？");
     }
 
 
