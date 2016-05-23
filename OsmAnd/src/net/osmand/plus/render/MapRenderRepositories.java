@@ -105,9 +105,8 @@ public class MapRenderRepositories {
 
 	////////////////////////////////////////////////////
 	//roadObject用来存储道路数据
-	public  ArrayList<BinaryMapDataObject> roadObject = null;
+	public  ArrayList<BinaryMapDataObject> roadObject = new ArrayList<BinaryMapDataObject>();
 	public Map<String,BinaryMapDataObject> roadConditionObject = new LinkedHashMap<String, BinaryMapDataObject>();
-	public RenderingContext tempRenderingContext;
 	////////////////////////////////////////////////////
 
 	// location of rendered bitmap
@@ -474,7 +473,6 @@ public class MapRenderRepositories {
 		System.gc(); // to clear previous objects
 		//tempResult用来存储道路信息
 		ArrayList<BinaryMapDataObject> tempResult = new ArrayList<BinaryMapDataObject>();
-		roadObject = new ArrayList<BinaryMapDataObject>();
 		ArrayList<BinaryMapDataObject> basemapResult = new ArrayList<BinaryMapDataObject>();
 		
 		int[] count = new int[]{0};
@@ -514,6 +512,7 @@ public class MapRenderRepositories {
 					readRouteDataAsMapObjects(searchRequest, c, tempResult, ids);
 				}
 			}
+			log.info(String.format("RoadObject objects %s", roadObject.size() +""));
 			BinaryMapDataObject tem = null;
 			for(int i = 0; i<roadObject.size();i++)
 			{
@@ -532,7 +531,7 @@ public class MapRenderRepositories {
 			///////////////////////////////////////////////////////////
 			//tempResult 中存储的就是道路对象
 			log.info(String.format("Route objects %s", tempResult.size() +""));
-			log.info(String.format("roadConditionObject objects %s", roadConditionObject.size() +""));
+			//log.info(String.format("roadConditionObject objects %s", roadConditionObject.size() +""));
 		}
 
 		String coastlineTime = "";
@@ -892,12 +891,6 @@ public class MapRenderRepositories {
 				//////////////////////////////////////////////////
 				//画图
 				renderer.generateNewBitmap(currentRenderingContext, cObjects, bmp, renderingReq, mapTileDownloader);
-			}
-			log.debug("MapRenderRepositories运行到currentRenderingContext设置完成的地方啦");
-			tempRenderingContext = new OsmandRenderer.RenderingContext(context);
-			tempRenderingContext = currentRenderingContext;
-			if(tempRenderingContext == null){
-				log.debug("tempRenderingContext为空啊！");
 			}
 			//////////////////////////////////////////////////
 
@@ -1364,15 +1357,5 @@ public class MapRenderRepositories {
 		combineRoad = new BinaryMapDataObject(coordinates,types,new int[0][],id);
 		return combineRoad;
 	}
-
-	public OsmandRenderer.RenderingContext getTempRenderContext(){
-		if(tempRenderingContext == null)
-		{
-			log.debug("currentRenderingContext为空！！！");
-		}
-
-		return tempRenderingContext;
-	}
-
 
 }

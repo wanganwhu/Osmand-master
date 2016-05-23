@@ -877,8 +877,6 @@ public class OsmandRenderer {
 		}
 		render.setInitialTagValueZoom(pair.tag, pair.value, rc.zoom, obj);
 		///////////////////////////////////
-		//log.debug("qwerdf   " + pair.tag);
-		//log.debug("qwerdf   " + pair.value);
 		render.setIntFilter(render.ALL.R_LAYER, layer);
 		boolean rendered = render.search(RenderingRulesStorage.LINE_RULES);
 		//updatePaint
