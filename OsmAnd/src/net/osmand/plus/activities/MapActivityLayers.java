@@ -44,6 +44,7 @@ import net.osmand.plus.views.OsmandMapTileView;
 import net.osmand.plus.views.POIMapLayer;
 import net.osmand.plus.views.PointLocationLayer;
 import net.osmand.plus.views.PointNavigationLayer;
+import net.osmand.plus.views.RoadConditionLayer;
 import net.osmand.plus.views.RouteConditionLayer;
 import net.osmand.plus.views.RouteLayer;
 import net.osmand.plus.views.TransportInfoLayer;
@@ -69,7 +70,10 @@ public class MapActivityLayers {
 	private RouteLayer routeLayer;
 	/////////////////////////////////////////////
 	//route condition layer
-	private RouteConditionLayer routeConditionLayer;
+	//private RouteConditionLayer routeConditionLayer;
+	private RoadConditionLayer roadConditionLayer;
+
+
 	private POIMapLayer poiMapLayer;
 	private FavoritesLayer favoritesLayer;
 	private TransportStopsLayer transportStopsLayer;
@@ -130,8 +134,10 @@ public class MapActivityLayers {
 		mapView.addLayer(routeLayer, 1);
 
 		// 2. route condition layer
-		routeConditionLayer = new RouteConditionLayer();
-		mapView.addLayer(routeConditionLayer,2);
+		/*routeConditionLayer = new RouteConditionLayer();
+		mapView.addLayer(routeConditionLayer,2);*/
+		roadConditionLayer = new RoadConditionLayer();
+		mapView.addLayer(roadConditionLayer,2);
 
 
 

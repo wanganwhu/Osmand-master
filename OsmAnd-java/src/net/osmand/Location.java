@@ -64,6 +64,10 @@ public class Location {
     public Location(String provider) {
         mProvider = provider;
     }
+    public Location() {
+
+    }
+
 
     /**
      * Constructs a new Location object that is a copy of the given
