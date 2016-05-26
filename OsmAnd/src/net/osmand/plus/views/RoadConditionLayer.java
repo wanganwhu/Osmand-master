@@ -20,6 +20,17 @@ import gnu.trove.list.array.TIntArrayList;
  * Created by 10394 on 2016/5/24.
  */
 public class RoadConditionLayer extends OsmandMapLayer {
+    class Location extends net.osmand.Location{
+        private float roadCondition;
+        public void setRoadCondition(float roadCondition){
+            this.roadCondition = roadCondition;
+        }
+        public float getRoadCondition() {
+            return roadCondition;
+        }
+    }
+
+
     private OsmandMapTileView view;
     private List<List<Location>>roads = new ArrayList<List<Location>>();
 
@@ -38,7 +49,7 @@ public class RoadConditionLayer extends OsmandMapLayer {
         paint = new Paint();
         paint.setAntiAlias(true);
         paint.setStyle(Paint.Style.STROKE);
-        paint.setColor(Color.GREEN);
+        //paint.setColor(Color.GREEN);
         paint.setStrokeWidth(3);
 
     }
@@ -48,15 +59,23 @@ public class RoadConditionLayer extends OsmandMapLayer {
         Location o1 =new Location();
         o1.setLatitude(30.540102);
         o1.setLongitude(114.362639);
+        o1.setRoadCondition(0.2f);
+
         Location o2 =new Location();
         o2.setLatitude(30.538392);
         o2.setLongitude(114.366161);
+        o2.setRoadCondition(0.2f);
+
         Location o3 =new Location();
         o3.setLatitude(30.536525);
         o3.setLongitude(114.371514);
+        o3.setRoadCondition(0.2f);
+
         Location o4 =new Location();
         o4.setLatitude(30.534783);
         o4.setLongitude(114.381755);
+        o4.setRoadCondition(0.5f);
+
         List<Location> road = new ArrayList<Location>();
         road.add(0,o1);
         road.add(1,o2);
@@ -79,17 +98,49 @@ public class RoadConditionLayer extends OsmandMapLayer {
 
     public void drawLocation(RotatedTileBox tb, Canvas canvas,List<Location> road){
         if(road.size()>0){
-            for (Location o : road) {
+            for (int i = 0;i<road.size();i++) {
+                Location o = road.get(i);
                 int x = (int) tb.getPixXFromLatLon(o.getLatitude(), o.getLongitude());
                 int y = (int) tb.getPixYFromLatLon(o.getLatitude(), o.getLongitude());
-                if(path == null){
+                float z = o.getRoadCondition();
+                if(i == 0){
                     path = new Path();
-                    path.moveTo(x, y);
-                }else{
-                    path.lineTo(x, y);
+                    path.moveTo(x,y);
+                } else {
+                    if(z-road.get(i-1).getRoadCondition()<0.3f){
+                            path.lineTo(x, y);
+                    } else {
+                        if(road.get(i-1).getRoadCondition()<=0.3f){
+                            paint.setColor(Color.GREEN);
+                        }
+                        else if(road.get(i-1).getRoadCondition()> 0.6f){
+                            paint.setColor(Color.RED);
+                        }
+                        else {
+                            paint.setColor(Color.YELLOW);
+                        }
+                        canvas.drawPath(path, paint);
+                        path =null;
+                        path = new Path();
+                        path.moveTo((int) tb.getPixXFromLatLon(road.get(i-1).getLatitude(), road.get(i-1).getLongitude()),
+                                (int) tb.getPixYFromLatLon(road.get(i-1).getLatitude(), road.get(i-1).getLongitude()));
+                        path.lineTo(x,y);
+                    }
                 }
+                if(i == road.size()-1){
+                    if(z<=0.3f){
+                        paint.setColor(Color.GREEN);
+                    }
+                    else if(z<= 0.6f){
+                        paint.setColor(Color.YELLOW);
+                    }
+                    else {
+                        paint.setColor(Color.RED);
+                    }
+                    canvas.drawPath(path, paint);
+                }
+
             }
-            canvas.drawPath(path, paint);
             path = null;
         }
 
