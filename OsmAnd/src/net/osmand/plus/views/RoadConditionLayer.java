@@ -131,11 +131,11 @@ public class RoadConditionLayer extends OsmandMapLayer {
                     if(z<=0.3f){
                         paint.setColor(Color.GREEN);
                     }
-                    else if(z<= 0.6f){
-                        paint.setColor(Color.YELLOW);
+                    else if(z > 0.6f){
+                        paint.setColor(Color.RED);
                     }
                     else {
-                        paint.setColor(Color.RED);
+                        paint.setColor(Color.YELLOW);
                     }
                     canvas.drawPath(path, paint);
                 }
