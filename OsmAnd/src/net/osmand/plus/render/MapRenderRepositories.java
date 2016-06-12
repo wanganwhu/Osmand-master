@@ -61,6 +61,7 @@ import org.apache.commons.logging.Log;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
+import android.graphics.Color;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.NonNull;
@@ -489,6 +490,8 @@ public class MapRenderRepositories {
 		//tempResult存储的一大头
 		MapIndex mi = readMapObjectsForRendering(zoom, renderingReq, tempResult, basemapResult, ids, count, ocean,
 				land, coastLines, basemapCoastLines, leftX, rightX, bottomY, topY);
+
+		log.debug(String.format("readMapObjectsForRendering %s", tempResult.size() +""));
 		int renderRouteDataFile = 0;
 		if (renderingReq.searchRenderingAttribute("showRoadMapsAttribute")) {
 			renderRouteDataFile = renderingReq.getIntPropertyValue(renderingReq.ALL.R_ATTR_INT_VALUE);
@@ -508,12 +511,11 @@ public class MapRenderRepositories {
 			for (BinaryMapIndexReader c : files.values()) {
 				// false positive case when we have 2 sep maps Country-roads & Country
 				/////////////////////////////////////////////////////////////////////
-				readRouteDataToDrawRouteCondition(searchRequest, c, roadObject, ids);
+				//readRouteDataToDrawRouteCondition(searchRequest, c, roadObject, ids);
 				if(c.getMapIndexes().size() == 0 || renderRouteDataFile == 1) {
 					readRouteDataAsMapObjects(searchRequest, c, tempResult, ids);
 				}
 			}
-			log.info(String.format("RoadObject objects %s", roadObject.size() +""));
 			//GG，发现roadConditionObject的顺序全是随机的，问题很大！
 			/*BinaryMapDataObject tem = null;
 			for(int i = 0; i<roadObject.size();i++)
@@ -669,7 +671,10 @@ public class MapRenderRepositories {
 					if (basemap) {
 						basemapResult.add(r);
 					} else {
-						tempResult.add(r);
+						/*if(renderingReq.getIntPropertyValue(renderingReq.ALL.R_COLOR) == Color.argb(255,255,208,128)
+								|| renderingReq.getIntPropertyValue(renderingReq.ALL.R_COLOR)== Color.argb(255,255,128,149))*/
+						log.debug("颜色"+ renderingReq.getIntPropertyValue(renderingReq.ALL.R_COLOR));
+							tempResult.add(r);
 					}
 				}
 				if (checkWhetherInterrupted()) {
