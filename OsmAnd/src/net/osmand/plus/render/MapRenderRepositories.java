@@ -401,7 +401,7 @@ public class MapRenderRepositories {
 		final boolean basemap = c.isBasemap();
 		try {
 			for (RouteRegion reg : c.getRoutingIndexes()) {
-				List<RouteSubregion> parent = sr.getZoom() < 15 ? reg.getBaseSubregions() : reg.getSubregions();
+				List<RouteSubregion> parent =reg.getBaseSubregions();
 				List<RouteSubregion> searchRouteIndexTree = c.searchRouteIndexTree(sr, parent);
 				final MapIndex nmi = new MapIndex();
 				c.loadRouteIndexData(searchRouteIndexTree, new ResultMatcher<RouteDataObject>() {
@@ -502,6 +502,7 @@ public class MapRenderRepositories {
 		while (it.hasNext()){
 			log.debug("MapRenderRepositories"+ it.next());
 		}*/
+		roadObject.clear();
 		if (renderRouteDataFile >= 0 && zoom >= zoomOnlyForBasemaps ) {
 			searchRequest = BinaryMapIndexReader.buildSearchRequest(leftX, rightX, topY, bottomY, zoom, null);
 			for (BinaryMapIndexReader c : files.values()) {
@@ -514,21 +515,21 @@ public class MapRenderRepositories {
 			}
 			log.info(String.format("RoadObject objects %s", roadObject.size() +""));
 			//GG，发现roadConditionObject的顺序全是随机的，问题很大！
-			BinaryMapDataObject tem = null;
+			/*BinaryMapDataObject tem = null;
 			for(int i = 0; i<roadObject.size();i++)
 			{
 				if(roadObject.get(i).getName(2) != null && roadObject.get(i).getName(2).trim().length() !=0){
 					if(roadConditionObject.containsKey(roadObject.get(i).getName(2))){
-						/*tem = roadConditionObject.get(roadObject.get(i).getName(2));
+						*//*tem = roadConditionObject.get(roadObject.get(i).getName(2));
 						//roadConditionObject.remove(roadObject.get(i).getName(2));
-						roadConditionObject.put(roadObject.get(i).getName(2),combine2Roads(tem,roadObject.get(i)));*/
+						roadConditionObject.put(roadObject.get(i).getName(2),combine2Roads(tem,roadObject.get(i)));*//*
 					}
 					else {
 						roadConditionObject.put(roadObject.get(i).getName(2),roadObject.get(i));
 					}
 				}
 				//log.debug("道路名称 getObjectNames "+roadObject.get(i).getObjectNames()+" getNames  "+roadObject.get(i).getName(2));
-			}
+			}*/
 			///////////////////////////////////////////////////////////
 			//tempResult 中存储的就是道路对象
 			log.info(String.format("Route objects %s", tempResult.size() +""));

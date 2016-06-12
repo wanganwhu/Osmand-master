@@ -6,15 +6,10 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PointF;
 
-import net.osmand.Location;
-import net.osmand.data.QuadRect;
 import net.osmand.data.RotatedTileBox;
-import net.osmand.plus.render.OsmandRenderer;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import gnu.trove.list.array.TIntArrayList;
 
 /**
  * Created by 10394 on 2016/5/24.

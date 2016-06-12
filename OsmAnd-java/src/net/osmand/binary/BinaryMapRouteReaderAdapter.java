@@ -775,7 +775,7 @@ public class BinaryMapRouteReaderAdapter {
 		rs.dataObjects = null;
 		return res;
 	}
-	
+	//筛选道路的关键步骤
 	public void loadRouteRegionData(List<RouteSubregion> toLoad, ResultMatcher<RouteDataObject> matcher) throws IOException {
 		Collections.sort(toLoad, new Comparator<RouteSubregion>() {
 			@Override
