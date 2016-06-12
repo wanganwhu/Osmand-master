@@ -491,7 +491,7 @@ public class MapRenderRepositories {
 		MapIndex mi = readMapObjectsForRendering(zoom, renderingReq, tempResult, basemapResult, ids, count, ocean,
 				land, coastLines, basemapCoastLines, leftX, rightX, bottomY, topY);
 
-		log.debug(String.format("readMapObjectsForRendering %s", tempResult.size() +""));
+		log.debug(String.format("readMapObjectsForRendering啦啦啦 %s", tempResult.size() +""));
 		int renderRouteDataFile = 0;
 		if (renderingReq.searchRenderingAttribute("showRoadMapsAttribute")) {
 			renderRouteDataFile = renderingReq.getIntPropertyValue(renderingReq.ALL.R_ATTR_INT_VALUE);
@@ -671,9 +671,26 @@ public class MapRenderRepositories {
 					if (basemap) {
 						basemapResult.add(r);
 					} else {
+						//////////////////////////////////////////////////////////
+						//drawObject&sortObjectsByProperOrder里的方法
+						int typeInd = 0;
+						for (int j = 0; j < r.getTypes().length; j++){
+							TagValuePair pair = r.getMapIndex().decodeType(r.getTypes()[j]);
+							renderingReq.setTagValueZoomLayer(pair.tag, pair.value, 15, 1, r);
+							if (renderingReq.search(RenderingRulesStorage.ORDER_RULES)) {
+								typeInd = j;
+							}
+						}
+
+						//drawPolyline里的方法
+						TagValuePair pair = r.getMapIndex().decodeType(r.getTypes()[typeInd]);
+						renderingReq.setInitialTagValueZoom(pair.tag, pair.value, 15, r);
+						renderingReq.setIntFilter(renderingReq.ALL.R_LAYER, 15);
+						renderingReq.search(RenderingRulesStorage.LINE_RULES);
+
+						//log.debug("颜色"+ renderingReq.getIntPropertyValue(renderingReq.ALL.R_COLOR));
 						/*if(renderingReq.getIntPropertyValue(renderingReq.ALL.R_COLOR) == Color.argb(255,255,208,128)
 								|| renderingReq.getIntPropertyValue(renderingReq.ALL.R_COLOR)== Color.argb(255,255,128,149))*/
-						log.debug("颜色"+ renderingReq.getIntPropertyValue(renderingReq.ALL.R_COLOR));
 							tempResult.add(r);
 					}
 				}

@@ -233,7 +233,7 @@ public class OsmandRenderer {
 					// polygon
 					drawPolygon(mObj, req, cv, rc, pair);
 				} else if (objOrder == 1 || objOrder == 2) {
-					drawPolyline(mObj, req, cv, rc, pair, mObj.getSimpleLayer(), objOrder == 1);
+						drawPolyline(mObj, req, cv, rc, pair, mObj.getSimpleLayer(), objOrder == 1);
 				} else if (objOrder == 3) {
 					drawPoint(mObj, req, cv, rc, pair, array.get(i).typeInd == 0);
 				}
